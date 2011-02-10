@@ -1,16 +1,20 @@
 # -*- coding: utf-8 -*-
-import tayable
 from distutils.core import setup
+from tayable import __version__
 
 setup(
     name='tayable',
-    version=tayable.__version__,
+    version=__version__,
     author='Lakshmi Vyas',
     author_email='lakshmi.vyas@gmail.com',
     url='http://github.com/lakshmivyas/tayable',
     description='Convert html table to yaml',
     long_description = 'A simple helper script to use in Textmate and other editors',
     license='MIT',
+    install_requires=(
+        'pyYAML',
+        'pyquery',
+    ),
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',

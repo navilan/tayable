@@ -8,9 +8,6 @@ html tables in legacy pages to yaml data to use with hyde.
 """
 
 from itertools import izip
-from pyquery import PyQuery
-import yaml
-
 __version__ = '0.0.1a'
 
 def convert(frag):
@@ -35,6 +32,9 @@ def convert(frag):
             col1: value
             col2: 12345
     """
+    from pyquery import PyQuery
+    import yaml
+
     q = PyQuery(frag)
     table = q('table').eq(0)
 
@@ -60,6 +60,9 @@ class TestConvert(object):
     """
 
     def test_basic_table(self):
+        from pyquery import PyQuery
+        import yaml
+
         table = """
 <table>
     <thead>
