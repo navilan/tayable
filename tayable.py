@@ -22,7 +22,7 @@ def convert(frag):
     Converts the first table element found in the given
     fragment.
 
-    Returned yaml has the following strucuter:
+    Returned yaml has the following structure:
 
     columns:
         -   col1 #(column header)
@@ -52,7 +52,7 @@ def convert(frag):
 
     rows = [make_row(tr) for tr in trs if tr.findall('td')]
 
-    return yaml.dump({"columns":columns, "rows": rows})
+    return yaml.dump({"columns":columns, "rows": rows}, default_flow_style=False)
 
 
 def main():
