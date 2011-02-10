@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from distutils.core import setup
+from setuptools import setup, find_packages
 from tayable import __version__
 
 setup(
@@ -15,6 +15,12 @@ setup(
         'pyYAML',
         'pyquery',
     ),
+    scripts=['tayable.py'],
+    entry_points={
+        'console_scripts': [
+            'tayable = tayable:main'
+        ]
+    },
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
@@ -23,5 +29,4 @@ setup(
         'Programming Language :: Python',
         'Topic :: Software Development',
     ],
-    py_modules=['tayable'],
 )

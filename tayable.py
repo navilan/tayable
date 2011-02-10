@@ -7,8 +7,9 @@ This is used as an helper for a textmate bundle to convert
 html tables in legacy pages to yaml data to use with hyde.
 """
 
+import sys
 from itertools import izip
-__version__ = '0.0.1a'
+__version__ = '0.0.2a'
 
 def convert(frag):
     """
@@ -49,10 +50,17 @@ def convert(frag):
                     for col, val in
                         izip(columns, tr.iterchildren('td'))])
 
-    rows = [make_row(tr) for tr in trs]
+    rows = [make_row(tr) for tr in trs if tr.findall('td')]
 
     return yaml.dump({"columns":columns, "rows": rows})
 
+
+def main():
+    html = sys.stdin.read()
+    sys.stdout.write(convert(html))
+
+if __name__ == "__main__":
+    sys.exit(main())
 
 class TestConvert(object):
     """
@@ -66,8 +74,10 @@ class TestConvert(object):
         table = """
 <table>
     <thead>
-        <th>Column One</th>
-        <th>Column Two</th>
+        <tr>
+            <th>Column One</th>
+            <th>Column Two</th>
+        </tr>
     </thead>
     <tbody>
         <tr>
@@ -99,9 +109,4 @@ rows:
         y = yaml.load(out)
         assert y
         e = yaml.load(expected)
-        print y
-        print e
         assert yaml.dump(y) == yaml.dump(e)
-
-
-
