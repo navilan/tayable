@@ -11,6 +11,8 @@ from itertools import izip
 from pyquery import PyQuery
 import yaml
 
+__version__ = '0.0.1a'
+
 def convert(frag):
     """
     Convert the provided html fragment into yaml data.
@@ -94,7 +96,7 @@ rows:
         y = yaml.load(out)
         assert y
         e = yaml.load(expected)
-        print y 
+        print y
         print e
         assert yaml.dump(y) == yaml.dump(e)
 
